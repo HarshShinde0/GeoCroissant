@@ -48,6 +48,15 @@ Landslide4Sense/
     └── test/          # 800 H5 files
 ```
 
+#### Project Output Files
+```
+/teamspace/studios/this_studio/
+├── Landslide4sense.json           # Dataset metadata
+├── no_landslide.png               # Non-landslide classification example
+├── landslide.png                   # Landslide classification example
+└── Landslide4Sense/               # Dataset directory
+```
+
 #### File Naming Convention
 - **Images**: `image_{id}.h5` (e.g., `image_1.h5`, `image_100.h5`)
 - **Annotations**: `mask_{id}.h5` (e.g., `mask_1.h5`, `mask_100.h5`)
@@ -228,6 +237,25 @@ for i in range(image_tensor.shape[0]):
 - **Confidence**: Softmax probabilities
 - **Evaluation**: F1-score optimization
 
+### Output Visualization Examples
+The finetuned model produces classification outputs that can be visualized using example images:
+
+#### Non-Landslide Detection
+- **File Path**: `/teamspace/studios/this_studio/no_landslide.png`
+- **Content**: Example of terrain classified as non-landslide
+- **Use Case**: Validation of model's ability to identify stable terrain
+
+![Non-Landslide Example](no_landslide.png)
+*Figure 1: Example of terrain classified as non-landslide by the finetuned model*
+
+#### Landslide Detection  
+- **File Path**: `/teamspace/studios/this_studio/landslide.png`
+- **Content**: Example of terrain classified as landslide
+- **Use Case**: Validation of model's ability to identify landslide-prone areas
+
+![Landslide Example](landslide.png)
+*Figure 2: Example of terrain classified as landslide by the finetuned model*
+
 ## User Requirements
 
 ### For Users with 14-Channel Images
@@ -286,10 +314,39 @@ The model automatically:
 - `FINETUNING_FIXES.md`: Implementation details and fixes
 - `Landslide4sense.json`: Dataset metadata and file listings
 
+### Output Files
+- `no_landslide.png`: Example of non-landslide classification
+- `landslide.png`: Example of landslide classification
+
 ### Key Classes
 - `LandslideDataset`: H5 dataset loader with 14-channel support
 - `PrithviLandslideClassifier`: Main model with band selection
 - `MultispectralTransforms`: Data augmentation for multispectral data
+
+## Model Evaluation and Output Analysis
+
+### Classification Results
+The finetuned model provides binary classification outputs that can be analyzed through:
+
+#### Visual Validation
+- **Non-Landslide Example**: `/teamspace/studios/this_studio/no_landslide.png`
+  - Shows terrain correctly classified as stable
+  - Helps validate model's precision for negative cases
+- **Landslide Example**: `/teamspace/studios/this_studio/landslide.png`
+  - Shows terrain correctly classified as landslide-prone
+  - Helps validate model's recall for positive cases
+
+#### Performance Metrics
+- **F1-Score**: Primary evaluation metric for imbalanced dataset
+- **Precision**: Accuracy of landslide predictions
+- **Recall**: Ability to detect actual landslides
+- **Confidence Scores**: Model's certainty in predictions
+
+#### Online Monitoring and Visualizations
+- **Wandb Dashboard**: [https://wandb.ai/Silvamillion/prithvi-landslide-finetuning/runs/q7buntz9](https://wandb.ai/Silvamillion/prithvi-landslide-finetuning/runs/q7buntz9)
+- **Real-time Metrics**: Live training progress, loss curves, and accuracy plots
+- **Sample Predictions**: Visual examples of model classifications during training
+- **Model Comparison**: Track multiple training runs and compare performance
 
 ## Usage Instructions
 
@@ -304,9 +361,17 @@ python finetune_landslide_complete.py
 ```
 
 ### 3. Monitor Training
-- Uses Weights & Biases for logging
-- Tracks F1-score, accuracy, and loss
-- Saves best performing model
+- Uses Weights & Biases (wandb) for comprehensive logging and monitoring
+- **Wandb Project**: `prithvi-landslide-finetuning`
+- **Run URL**: [https://wandb.ai/Silvamillion/prithvi-landslide-finetuning/runs/q7buntz9](https://wandb.ai/Silvamillion/prithvi-landslide-finetuning/runs/q7buntz9)
+- **Metrics Tracked**: 
+  - F1-score (primary evaluation metric)
+  - Training and validation accuracy
+  - Loss curves (training/validation)
+  - Learning rate scheduling
+  - Model parameters and configuration
+- **Visualizations**: Training progress charts, confusion matrices, sample predictions
+- **Model Checkpoints**: Automatic saving of best performing models
 
 ### 4. Inference
 ```python
