@@ -19,7 +19,7 @@ This document provides comprehensive information about the finetuning implementa
 
 ### Metadata File Information
 - **File Path**: `/teamspace/studios/this_studio/Landslide4sense.json`
-- **Schema**: Croissant 1.0 compliant
+- **Schema**: GeoCroissant 1.0 compliant
 - **Content**: 
   - Complete file listings for all splits
   - Band specifications and sensor information
