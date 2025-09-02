@@ -43,6 +43,7 @@
     "regex": "cr:regex",
     "repeated": "cr:repeated",
     "replace": "cr:replace",
+    "samplingRate": "cr:samplingRate",
     "separator": "cr:separator",
     "source": "cr:source",
     "subField": "cr:subField",
