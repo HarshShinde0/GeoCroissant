@@ -5,85 +5,13 @@ import sys
 from datetime import datetime
 from typing import Dict, Any
 
-# Built-in pytdml fix - no external imports needed
-class TrainingDataset:
-    """Training dataset class that matches pytdml interface"""
-    
-    def __init__(self, data: Dict[str, Any]):
-        self.data = data
-        self.name = data.get('name', '')
-        self.amount_of_training_data = data.get('amountOfTrainingData', 0)
-        self.number_of_classes = data.get('numberOfClasses', 0)
-        self.description = data.get('description', '')
-        self.license = data.get('license', '')
-        self.providers = data.get('providers', [])
-        self.created_time = data.get('createdTime', '')
-        self.updated_time = data.get('updatedTime', '')
-        self.version = data.get('version', '')
-        self.tasks = data.get('tasks', [])
-        self.classes = data.get('classes', [])
-        self.bands = data.get('bands', [])
-        self.data = data.get('data', [])
-        self.data_statistics = data.get('dataStatistics', {})
+# Import pytdml library with proper structure
+from pytdml.type import EOTrainingDataset, AI_EOTask, AI_EOTrainingData, AI_SceneLabel, AI_PixelLabel, MD_Band, MD_Identifier, NamedValue, CI_Citation, MD_Scope
+from pytdml.io import write_to_json
 
-class TrainingData:
-    """Training data class that matches pytdml interface"""
-    
-    def __init__(self, data: Dict[str, Any]):
-        self.data = data
-        self.id = data.get('id', '')
-        self.data_url = data.get('dataUrl', [])
-        self.labels = data.get('labels', [])
-
-class PixelLabel:
-    """Pixel label class that matches pytdml interface"""
-    
-    def __init__(self, data: Dict[str, Any]):
-        self.data = data
-        self.image_url = data.get('imageUrl', [])
-        self.image_format = data.get('imageFormat', [])
-        self.class_name = data.get('class', '')
-
-class EOTask:
-    """EO Task class that matches pytdml interface"""
-    
-    def __init__(self, data: Dict[str, Any]):
-        self.data = data
-        self.id = data.get('id', '')
-        self.name = data.get('name', '')
-        self.description = data.get('description', '')
-        self.input_type = data.get('inputType', '')
-        self.output_type = data.get('outputType', '')
-        self.task_type = data.get('taskType', '')
-
-class PytdmlIO:
-    """IO class that matches pytdml.io interface"""
-    
-    @staticmethod
-    def read_from_json(file_path: str) -> TrainingDataset:
-        """Read TDML JSON file and return TrainingDataset object"""
-        try:
-            with open(file_path, 'r') as f:
-                data = json.load(f)
-            return TrainingDataset(data)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"File not found: {file_path}")
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON in file: {e}")
-
-class Pytdml:
-    """Main pytdml class that matches pytdml interface"""
-    
-    def __init__(self):
-        self.io = PytdmlIO()
-
-# Replace the problematic pytdml modules
-sys.modules['pytdml'] = Pytdml()
-sys.modules['pytdml.io'] = PytdmlIO()
-
-def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
+def convert_geocroissant_to_tdml(geocroissant_path, tdml_output_path):
     """
-    Convert GeoCroissant JSON to OGC-TDML JSON format with proper field handling.
+    Convert GeoCroissant JSON to OGC-TDML JSON format using pytdml library.
     """
     try:
         # Load the GeoCroissant JSON directly
@@ -128,13 +56,34 @@ def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
     if not providers:
         providers = ["IBM-NASA Prithvi Models Family"]
     
-    # Set default timestamps with proper ISO format
-    created_time = croissant_data.get('dateCreated', '') or croissant_data.get('created_time', '')
-    updated_time = croissant_data.get('dateModified', '') or croissant_data.get('updated_time', '')
-    if not created_time:
-        created_time = "2025-01-17T00:00:00Z"
-    if not updated_time:
-        updated_time = "2025-01-17T00:00:00Z"
+    # Set default timestamps - try different formats that pytdml might accept
+    created_time_str = croissant_data.get('dateCreated', '') or croissant_data.get('created_time', '')
+    updated_time_str = croissant_data.get('dateModified', '') or croissant_data.get('updated_time', '')
+    
+    # Use simple date format that should work
+    if created_time_str:
+        try:
+            # Try to parse and use a simple format
+            if created_time_str.endswith('Z'):
+                created_time_str = created_time_str[:-1]
+            dt = datetime.fromisoformat(created_time_str)
+            created_time = dt.strftime('%Y-%m-%d')
+        except ValueError:
+            created_time = "2025-01-17"
+    else:
+        created_time = "2025-01-17"
+    
+    if updated_time_str:
+        try:
+            # Try to parse and use a simple format
+            if updated_time_str.endswith('Z'):
+                updated_time_str = updated_time_str[:-1]
+            dt = datetime.fromisoformat(updated_time_str)
+            updated_time = dt.strftime('%Y-%m-%d')
+        except ValueError:
+            updated_time = "2025-01-17"
+    else:
+        updated_time = "2025-01-17"
     
     version = croissant_data.get('version', '1.0.0')
     
@@ -173,12 +122,13 @@ def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
                     wavelength = band_info.get('wavelength', '')
                     hls_band = band_info.get('hlsBand', '')
                     
-                    band_dict = {
-                        "name": band_name,
-                        "description": f"{band_name} band ({hls_band})",
-                        "wavelength": wavelength,
-                        "hlsBand": hls_band
-                    }
+                    band_dict = MD_Band(
+                        name=[
+                            MD_Identifier(
+                                code=band_name
+                            )
+                        ]
+                    )
                     bands.append(band_dict)
     
     # Extract class information from geocr:mlTask
@@ -194,30 +144,30 @@ def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
             }
             for class_name in class_list:
                 class_key = class_mapping.get(class_name, str(len(classes)))
-                class_dict = {
-                    "key": class_key,
-                    "value": class_name
-                }
+                class_dict = NamedValue(
+                    key=class_key,
+                    value=class_name
+                )
                 classes.append(class_dict)
     
     # If no classes found, use default burn scar classes
     if not classes:
         classes = [
-            {"key": "0", "value": "NotBurned"},
-            {"key": "1", "value": "BurnScar"},
-            {"key": "-1", "value": "NoData"}
+            NamedValue(key="0", value="NotBurned"),
+            NamedValue(key="1", value="BurnScar"),
+            NamedValue(key="-1", value="NoData")
         ]
         print("Warning: No classes found in GeoCroissant data, using default burn scar classes")
     
     # If no bands found, use default HLS bands
     if not bands:
         bands = [
-            {"name": "Blue", "description": "Blue band (B02)", "wavelength": "490nm", "hlsBand": "B02"},
-            {"name": "Green", "description": "Green band (B03)", "wavelength": "560nm", "hlsBand": "B03"},
-            {"name": "Red", "description": "Red band (B04)", "wavelength": "665nm", "hlsBand": "B04"},
-            {"name": "NIR", "description": "NIR band (B8A)", "wavelength": "865nm", "hlsBand": "B8A"},
-            {"name": "SW1", "description": "SW1 band (B11)", "wavelength": "1610nm", "hlsBand": "B11"},
-            {"name": "SW2", "description": "SW2 band (B12)", "wavelength": "2190nm", "hlsBand": "B12"}
+            MD_Band(name=[MD_Identifier(code="Blue")]),
+            MD_Band(name=[MD_Identifier(code="Green")]),
+            MD_Band(name=[MD_Identifier(code="Red")]),
+            MD_Band(name=[MD_Identifier(code="NIR")]),
+            MD_Band(name=[MD_Identifier(code="SW1")]),
+            MD_Band(name=[MD_Identifier(code="SW2")])
         ]
         print("Warning: No bands found in GeoCroissant data, using default HLS bands")
     
@@ -227,16 +177,18 @@ def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
     training_samples = data_stats.get('trainingSamples', 0)
     validation_samples = data_stats.get('validationSamples', 0)
     
-    # Build tasks with proper structure
-    tasks = [{
-        "type": "EOTask",
-        "id": "task_0",
-        "name": "Burn Scar Segmentation",
-        "description": "Semantic segmentation of burn scars in satellite imagery using HLS data.",
-        "inputType": "image",
-        "outputType": "mask",
-        "taskType": "segmentation"
-    }]
+    # Build tasks with proper pytdml structure
+    tasks = [
+        AI_EOTask(
+            id="task_0",
+            name="Burn Scar Segmentation",
+            description="Semantic segmentation of burn scars in satellite imagery using HLS data.",
+            input_type="image",
+            output_type="mask",
+            task_type="segmentation",
+            type="AI_EOTask"
+        )
+    ]
     
     # Extract actual file URLs from geocr:fileListing with improved handling
     data = []
@@ -279,54 +231,47 @@ def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
                     print(f"Warning: Skipping data entry {i} due to missing URL")
                     continue
                 
-                data_entry = {
-                    "type": "EOTrainingData",
-                    "id": f"data_{i}",
-                    "dataUrl": [img_url],
-                    "labels": [{
-                        "type": "PixelLabel",
-                        "imageUrl": [mask_url],
-                        "imageFormat": ["image/tiff"],
-                        "class": ""
-                    }]
-                }
+                data_entry = AI_EOTrainingData(
+                    id=f"data_{i}",
+                    dataURL=[img_url],
+                    labels=[
+                        AI_SceneLabel(
+                            **{"class": "burn_scar_segmentation"},
+                            type="AI_SceneLabel"
+                        ),
+                        AI_PixelLabel(
+                            imageURL=[mask_url],
+                            imageFormat=["image/tiff"],
+                            class_name="pixel_mask",
+                            type="AI_PixelLabel"
+                        )
+                    ],
+                    type="AI_EOTrainingData"
+                )
                 data.append(data_entry)
     
-    # Build the complete TDML structure with proper field names
-    tdml_structure = {
-        "type": "EOTrainingDataset",
-        "id": identifier,
-        "name": name,
-        "description": description,
-        "license": license_,
-        "providers": providers,
-        "createdTime": created_time,
-        "updatedTime": updated_time,
-        "version": version,
-        "tasks": tasks,
-        "classes": classes,
-        "bands": bands,
-        "data": data,
-        "amountOfTrainingData": len(data),
-        "numberOfClasses": len(classes),
-        "dataStatistics": {
-            "totalSamples": total_samples,
-            "trainingSamples": training_samples,
-            "validationSamples": validation_samples
-        }
-    }
+    # Build the complete TDML structure with proper pytdml classes
+    tdml_structure = EOTrainingDataset(
+        id=identifier,
+        name=name,
+        description=description,
+        license=license_,
+        providers=providers,
+        created_time=created_time,
+        updated_time=updated_time,
+        version=version,
+        tasks=tasks,
+        classes=classes,
+        bands=bands,
+        data=data,
+        amount_of_training_data=len(data),
+        number_of_classes=len(classes),
+        type="AI_EOTrainingDataset"
+    )
     
-    # Validate required fields
-    required_fields = ["type", "id", "name", "description", "license", "providers", "createdTime", "updatedTime", "version", "tasks", "classes", "bands", "data"]
-    missing_fields = [field for field in required_fields if not tdml_structure.get(field)]
-    
-    if missing_fields:
-        print(f"Warning: Missing required fields: {missing_fields}")
-    
-    # Write the TDML JSON file with proper error handling
+    # Write the TDML JSON file using pytdml's write_to_json function
     try:
-        with open(tdml_output_path, 'w') as f:
-            json.dump(tdml_structure, f, indent=2, ensure_ascii=False)
+        write_to_json(tdml_structure, tdml_output_path)
         
         print(f"TDML file written to {tdml_output_path}")
         print(f"Converted dataset: {name}")
@@ -341,8 +286,8 @@ def convert_geocroissant_to_tdml_manual(geocroissant_path, tdml_output_path):
         raise IOError(f"Failed to write TDML file: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convert GeoCroissant JSON to TDML JSON using manual JSON structure building.")
+    parser = argparse.ArgumentParser(description="Convert GeoCroissant JSON to TDML JSON using pytdml library.")
     parser.add_argument("geocroissant_path", help="Path to input GeoCroissant JSON")
     parser.add_argument("tdml_output_path", help="Path to output TDML JSON")
     args = parser.parse_args()
-    convert_geocroissant_to_tdml_manual(args.geocroissant_path, args.tdml_output_path) 
+    convert_geocroissant_to_tdml(args.geocroissant_path, args.tdml_output_path) 
