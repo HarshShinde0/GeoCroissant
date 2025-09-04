@@ -398,7 +398,7 @@
   },
   "geocr:relatedUrls": {
     "@type": "geocr:RelatedUrls",
-    "geocr:totalUrls": 43,
+    "geocr:totalUrls": 22,
     "geocr:urlCategories": {
       "dataAccess": [],
       "metadata": [
@@ -411,28 +411,12 @@
           "accessMethod": "STAC_METADATA"
         },
         {
-          "url": "s3://lp-prod-public/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0_stac.json",
-          "type": "VIEW RELATED INFORMATION",
-          "subtype": "",
-          "description": "This link provides direct download access via S3 to the granule",
-          "encodingFormat": "application/json",
-          "accessMethod": "S3_DIRECT"
-        },
-        {
           "url": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.cmr.xml",
           "type": "VIEW RELATED INFORMATION",
           "subtype": "",
           "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.cmr.xml",
           "encodingFormat": "application/xml",
           "accessMethod": "CMR_METADATA"
-        },
-        {
-          "url": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.cmr.xml",
-          "type": "VIEW RELATED INFORMATION",
-          "subtype": "",
-          "description": "This link provides direct download access via S3 to the granule",
-          "encodingFormat": "application/xml",
-          "accessMethod": "S3_DIRECT"
         }
       ],
       "visualization": [
@@ -443,31 +427,14 @@
           "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.jpg",
           "encodingFormat": "image/jpeg",
           "accessMethod": "PREVIEW_IMAGE"
-        },
-        {
-          "url": "s3://lp-prod-public/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.jpg",
-          "type": "GET RELATED VISUALIZATION",
-          "subtype": "",
-          "description": "This link provides direct download access via S3 to the granule",
-          "encodingFormat": "image/jpeg",
-          "accessMethod": "S3_DIRECT"
         }
       ],
       "documentation": [],
-      "other": [
-        {
-          "url": "https://data.lpdaac.earthdatacloud.nasa.gov/s3credentials",
-          "type": "VIEW RELATED INFORMATION",
-          "subtype": "",
-          "description": "api endpoint to retrieve temporary credentials valid for same-region direct s3 access",
-          "encodingFormat": "application/octet-stream",
-          "accessMethod": "METADATA"
-        }
-      ]
+      "other": []
     },
     "geocr:accessMethods": {
       "https": 22,
-      "s3": 21,
+      "s3": 0,
       "other": 0
     }
   },
@@ -476,8 +443,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B08_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B08.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B08.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B08.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B08.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -485,8 +452,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B07_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B07.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B07.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B07.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B07.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -494,8 +461,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B05_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B05.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B05.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B05.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B05.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -503,8 +470,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B02_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B02.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B02.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B02.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B02.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -512,8 +479,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B10_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B10.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B10.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B10.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B10.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -521,8 +488,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_SZA_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.SZA.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.SZA.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.SZA.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.SZA.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -530,8 +497,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B01_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B01.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B01.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B01.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B01.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -539,8 +506,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B03_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B03.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B03.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B03.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B03.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -548,8 +515,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_VAA_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.VAA.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.VAA.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.VAA.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.VAA.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -557,8 +524,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B04_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B04.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B04.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B04.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B04.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -566,8 +533,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B8A_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B8A.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B8A.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B8A.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B8A.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -575,8 +542,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B06_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B06.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B06.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B06.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B06.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -584,8 +551,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B11_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B11.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B11.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B11.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B11.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -593,8 +560,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_VZA_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.VZA.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.VZA.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.VZA.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.VZA.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -602,8 +569,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B09_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B09.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B09.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B09.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B09.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -611,8 +578,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_Fmask_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.Fmask.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.Fmask.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.Fmask.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.Fmask.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -620,8 +587,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_B12_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.B12.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B12.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.B12.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.B12.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -629,8 +596,8 @@
       "@type": "cr:FileObject",
       "@id": "file_HLS_S30_T16SDD_2016134T163332_v2_0_SAA_tif",
       "name": "HLS.S30.T16SDD.2016134T163332.v2.0.SAA.tif",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.SAA.tif",
+      "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.SAA.tif",
+      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.SAA.tif",
       "encodingFormat": "image/tiff",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
@@ -647,15 +614,6 @@
       "@type": "cr:FileObject",
       "@id": "other_19",
       "name": "VIEW RELATED INFORMATION",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-public/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0_stac.json",
-      "encodingFormat": "application/json",
-      "md5": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    {
-      "@type": "cr:FileObject",
-      "@id": "other_20",
-      "name": "VIEW RELATED INFORMATION",
       "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.cmr.xml",
       "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.cmr.xml",
       "encodingFormat": "application/xml",
@@ -663,37 +621,10 @@
     },
     {
       "@type": "cr:FileObject",
-      "@id": "other_21",
-      "name": "VIEW RELATED INFORMATION",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-protected/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.cmr.xml",
-      "encodingFormat": "application/xml",
-      "md5": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    {
-      "@type": "cr:FileObject",
-      "@id": "other_22",
-      "name": "VIEW RELATED INFORMATION",
-      "description": "api endpoint to retrieve temporary credentials valid for same-region direct s3 access",
-      "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/s3credentials",
-      "encodingFormat": "application/octet-stream",
-      "md5": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    {
-      "@type": "cr:FileObject",
-      "@id": "other_23",
+      "@id": "other_20",
       "name": "GET RELATED VISUALIZATION",
       "description": "Download HLS.S30.T16SDD.2016134T163332.v2.0.jpg",
       "contentUrl": "https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-public/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.jpg",
-      "encodingFormat": "image/jpeg",
-      "md5": "d41d8cd98f00b204e9800998ecf8427e"
-    },
-    {
-      "@type": "cr:FileObject",
-      "@id": "other_24",
-      "name": "GET RELATED VISUALIZATION",
-      "description": "This link provides direct download access via S3 to the granule",
-      "contentUrl": "s3://lp-prod-public/HLSS30.020/HLS.S30.T16SDD.2016134T163332.v2.0/HLS.S30.T16SDD.2016134T163332.v2.0.jpg",
       "encodingFormat": "image/jpeg",
       "md5": "d41d8cd98f00b204e9800998ecf8427e"
     },
