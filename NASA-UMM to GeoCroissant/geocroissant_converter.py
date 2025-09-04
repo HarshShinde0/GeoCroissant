@@ -547,6 +547,10 @@ class CompleteNASAUMMGToGeoCroissantConverter:
             subtype = url_info.get('Subtype', '')
             description = url_info.get('Description', '')
             
+            # Skip S3 URLs completely
+            if url.startswith('s3://'):
+                continue
+            
             # Extract filename from URL
             filename = url.split('/')[-1] if '/' in url else url
             
@@ -554,14 +558,13 @@ class CompleteNASAUMMGToGeoCroissantConverter:
             encoding_format = self.determine_encoding_format(url, url_type, subtype)
             
             if url.endswith('.tif') or url.endswith('.tiff'):
-                # Group TIFF files by filename, prefer HTTPS over S3
-                if filename not in unique_files or not url.startswith('https://'):
+                # Group TIFF files by filename, prefer HTTPS
+                if filename not in unique_files or url.startswith('https://'):
                     unique_files[filename] = {
                         "url": url,
                         "url_type": url_type,
                         "description": description,
-                        "encoding_format": encoding_format,
-                        "is_s3": 's3://' in url
+                        "encoding_format": encoding_format
                     }
             else:
                 # Keep non-TIFF URLs separate
@@ -590,8 +593,8 @@ class CompleteNASAUMMGToGeoCroissantConverter:
             url = url_info["url"]
             url_type = url_info["url_type"]
             
-            # Only add important non-duplicate URLs
-            if any(keyword in url.lower() for keyword in ['stac', 'cmr', 'jpg', 'jpeg', 's3credentials']):
+            # Only add important non-duplicate URLs, exclude S3 credentials
+            if any(keyword in url.lower() for keyword in ['stac', 'cmr', 'jpg', 'jpeg']) and 's3credentials' not in url.lower():
                 distributions.append({
                     "@type": "cr:FileObject",
                     "@id": f"other_{len(distributions)}",
@@ -870,6 +873,10 @@ class CompleteNASAUMMGToGeoCroissantConverter:
             subtype = url_info.get('Subtype', '')
             description = url_info.get('Description', '')
             
+            # Skip S3 URLs completely
+            if url.startswith('s3://'):
+                continue
+            
             # Skip if we've already processed this URL
             if url in seen_urls:
                 continue
@@ -892,9 +899,7 @@ class CompleteNASAUMMGToGeoCroissantConverter:
                 categorized_urls["visualization"].append(url_entry)
             elif 'documentation' in url.lower() or 'readme' in url.lower():
                 categorized_urls["documentation"].append(url_entry)
-            elif 's3credentials' in url.lower():
-                categorized_urls["other"].append(url_entry)
-            # Skip TIFF files and S3 URLs to avoid duplication with distribution section
+            # Skip S3 credentials and TIFF files to avoid duplication with distribution section
         
         return {
             "@type": "geocr:RelatedUrls",
